@@ -44,7 +44,7 @@
     ],
     "qweb": ["static/src/xml/report.xml"],
     "installable": True,
-    "application": True,
+    "application": False,
     "auto_install": False,
     "license": "AGPL-3",
 }
