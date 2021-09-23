@@ -1,0 +1,160 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ibel_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-22 20:11+0000\n"
+"PO-Revision-Date: 2021-09-22 20:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.res_config_settings_view_form_inherit
+msgid "Add signature for the employee.."
+msgstr "Ajouter une signature pour l'employé."
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.res_config_settings_view_form_inherit
+msgid "Adds and computes age field on employee."
+msgstr "Ajoute et calcule le champ d'âge sur l'employé."
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Authorized signature"
+msgstr "Signature autorisée"
+
+#. module: ibel_hr
+#: model:ir.model,name:ibel_hr.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: ibel_hr
+#: model:ir.model,name:ibel_hr.model_hr_contract
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Contract type :"
+msgstr "Type de contrat :"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Department :"
+msgstr "Département :"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_hr_contract__display_name
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Duration"
+msgstr "Durée"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Employee :"
+msgstr "Employé :"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__module_hr_employee_age
+msgid "Employee Age"
+msgstr "Âge de l'employé"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__module_hr_employee_calendar_planning
+msgid "Employee Calendar Planning"
+msgstr "Planification du calendrier des employés"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__module_hr_employee_digitized_signature
+msgid "Employee Digitized Signature"
+msgstr "Signature numérisée de l'employé"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Employee signature"
+msgstr "Signature de l'employé"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "End date :"
+msgstr "Date de fin :"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "First contract date :"
+msgstr "Date du premier contrat :"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__module_hr_course
+msgid "HR Course"
+msgstr "Cours RH"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_hr_contract__id
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings__id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Job position :"
+msgstr "Poste :"
+
+#. module: ibel_hr
+#: model:ir.model.fields,field_description:ibel_hr.field_hr_contract____last_update
+#: model:ir.model.fields,field_description:ibel_hr.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.res_config_settings_view_form_inherit
+msgid "Manage employee working time with profiles by date intervals."
+msgstr ""
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.res_config_settings_view_form_inherit
+msgid "Manage employee's training courses and all its validation process."
+msgstr "Gérez le temps de travail des employés avec des profils par intervalles de dates."
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Notes"
+msgstr "Remarques"
+
+#. module: ibel_hr
+#: model:ir.actions.report,name:ibel_hr.report_contract_action_herited
+msgid "Print Contract"
+msgstr "Imprimer le contrat"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Salary and advantages"
+msgstr "Salaire et avantages"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Start date :"
+msgstr "Date de début :"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Wage :"
+msgstr "Salaire :"
+
+#. module: ibel_hr
+#: model_terms:ir.ui.view,arch_db:ibel_hr.report_contract_document
+msgid "Working Schedule :"
+msgstr "Plan de travail :"
