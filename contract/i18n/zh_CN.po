@@ -435,6 +435,13 @@ msgid "Canceled"
 msgstr "已取消"
 
 #. module: contract
+#: model:ir.model.fields,field_description:contract.field_contract_abstract_contract_line__allowed_uom_categ_id
+#: model:ir.model.fields,field_description:contract.field_contract_line__allowed_uom_categ_id
+#: model:ir.model.fields,field_description:contract.field_contract_template_line__allowed_uom_categ_id
+msgid "Category"
+msgstr ""
+
+#. module: contract
 #: model:ir.model.fields,help:contract.field_contract_abstract_contract__generation_type
 #: model:ir.model.fields,help:contract.field_contract_contract__generation_type
 #: model:ir.model.fields,help:contract.field_contract_template__generation_type
@@ -797,6 +804,15 @@ msgid "Contracts to invoice"
 msgstr "合同行"
 
 #. module: contract
+#: model:ir.model.fields,help:contract.field_contract_abstract_contract_line__allowed_uom_categ_id
+#: model:ir.model.fields,help:contract.field_contract_line__allowed_uom_categ_id
+#: model:ir.model.fields,help:contract.field_contract_template_line__allowed_uom_categ_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: contract
 #: model:ir.model.fields,field_description:contract.field_contract_contract__create_invoice_visibility
 #: model:ir.model.fields,field_description:contract.field_contract_line__create_invoice_visibility
 msgid "Create Invoice Visibility"
@@ -1029,6 +1045,14 @@ msgstr "显示名称"
 #, fuzzy
 msgid "Display Type"
 msgstr "显示名称"
+
+#. module: contract
+#: code:addons/contract/wizards/contract_manually_create_invoice.py:0
+#, python-format
+msgid ""
+"Failed to process the contract %(name)s [id: %(id)s]:\n"
+"%(ue)s"
+msgstr ""
 
 #. module: contract
 #: model_terms:ir.ui.view,arch_db:contract.contract_contract_search_view
