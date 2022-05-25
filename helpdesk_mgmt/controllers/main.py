@@ -43,10 +43,8 @@ class HelpdeskTicketController(http.Controller):
     @http.route("/submitted/ticket", type="http", auth="user", website=True, csrf=True)
     def submit_ticket(self, **kw):
         vals = {
-            "partner_name": kw.get("name"),
             "company_id": http.request.env.user.company_id.id,
             "category_id": kw.get("category"),
-            "partner_email": kw.get("email"),
             "description": kw.get("description"),
             "name": kw.get("subject"),
             "attachment_ids": False,
@@ -54,10 +52,9 @@ class HelpdeskTicketController(http.Controller):
             .sudo()
             .search([("name", "=", "Web")])
             .id,
-            "partner_id": request.env["res.partner"]
-            .sudo()
-            .search([("name", "=", kw.get("name")), ("email", "=", kw.get("email"))])
-            .id,
+            "partner_id": request.env.user.partner_id.id,
+            "partner_name": request.env.user.partner_id.name,
+            "partner_email": request.env.user.partner_id.email,
         }
         new_ticket = request.env["helpdesk.ticket"].sudo().create(vals)
         new_ticket.message_subscribe(partner_ids=request.env.user.partner_id.ids)

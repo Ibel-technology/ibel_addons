@@ -16,14 +16,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 23:24+0000\n"
-"PO-Revision-Date: 2018-08-24 09:19+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2020\n"
+"PO-Revision-Date: 2022-03-13 17:17+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/odoo/teams/41243/es/)\n"
-"Language: es\n"
+"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: payroll
 #: model:ir.actions.report,print_report_name:payroll.action_report_payslip
@@ -32,6 +33,9 @@ msgid ""
 "            'Payslip - %s' % (object.employee_id.name)\n"
 "        "
 msgstr ""
+"\n"
+"            'Liquidación - %s' % (object.employee_id.name)\n"
+"        "
 
 #. module: payroll
 #: model:ir.actions.report,print_report_name:payroll.payslip_details_report
@@ -40,6 +44,9 @@ msgid ""
 "            'Payslip Details - %s' % (object.employee_id.name)\n"
 "        "
 msgstr ""
+"\n"
+"            'Detalles de la Liquidación - %s' % (object.employee_id.name)\n"
+"        "
 
 #. module: payroll
 #: code:addons/payroll/models/hr_salary_rule.py:0
@@ -51,6 +58,11 @@ msgid ""
 "\n"
 "%s\n"
 msgstr ""
+"\n"
+"Código de python incorrecto definido para la regla de salario %s (%s).\n"
+"Acá está el error recibido:\n"
+"\n"
+"%s\n"
 
 #. module: payroll
 #: code:addons/payroll/models/hr_salary_rule.py:0
@@ -62,6 +74,11 @@ msgid ""
 "\n"
 "%s\n"
 msgstr ""
+"\n"
+"Código de python incorrecto definido para la regla de salario %s (%s).\n"
+"Acá está el error recibido:\n"
+"\n"
+"%s\n"
 
 #. module: payroll
 #: code:addons/payroll/models/hr_payroll_structure.py:0
@@ -87,7 +104,7 @@ msgstr ""
 "        \n"
 "* Cuando la liquidacion es confirmada, su estado sera 'Confirmado'.\n"
 "        \n"
-"* Cuando un usuario rechaza la liquidacion el estado sera 'Rechazado'"
+"* Cuando un usuario rechaza la liquidacion el estado sera 'Rechazado'."
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
@@ -100,6 +117,13 @@ msgid ""
 "                        on Payslips Run.\n"
 "                    </span>"
 msgstr ""
+"<span colspan=\"4\" nolabel=\"1\">\n"
+"                        Este asistente generará la liquidación de sueldo "
+"para todos los empleados seleccionados\n"
+"                         basado en las fechas y la nota de crédito\n"
+"                         especificada\n"
+"                         en la Ejecusión de Liquidaciones.\n"
+"                    </span>"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.report_payslip
@@ -189,6 +213,10 @@ msgid ""
 "the\n"
 "                state or anyone that collect or inject money on payslips."
 msgstr ""
+"Un registro de cotización es un tercero que interviene en el pago\n"
+"                 del salario de los empleados. Puede ser la obra social, el\n"
+"                 estado o cualquier persona que recaude o inyecte dinero en "
+"las liquidaciones."
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
@@ -205,7 +233,7 @@ msgstr "Información Contable"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_needaction
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción Requerida"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__active
@@ -217,25 +245,25 @@ msgstr "Activo"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_exception_decoration
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoración de Excepción de Actividad"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_state
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado de Actividad"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_type_icon
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ícono de Tipo de Actividad"
 
 #. module: payroll
 #: model_terms:ir.actions.act_window,help:payroll.hr_contribution_register_action
@@ -293,7 +321,7 @@ msgstr "Anualmente"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__appears_on_payslip
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__appears_on_payslip
 msgid "Appears on Payslip"
-msgstr "Aparece en la liquidacion"
+msgstr "Aparece en la Liquidación"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__condition_python
@@ -309,7 +337,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_attachment_count
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Cuenta de Adjuntos"
 
 #. module: payroll
 #: model:hr.salary.rule.category,name:payroll.BASIC
@@ -350,7 +378,7 @@ msgstr "Cancelar Liquidacion"
 #: code:addons/payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Cannot cancel a payslip that is done."
-msgstr "No se puede cancelar una nómina que ya está finalizada."
+msgstr "No se puede cancelar una liquidación que ya está finalizada."
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__category_id
@@ -494,7 +522,7 @@ msgstr "Registro de contribución"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.view_payslip_lines_contribution_register
 msgid "Contribution Register's Payslip Lines"
-msgstr "Líneas de la nómina para el registro de contribución"
+msgstr "Líneas de la liquidación para el registro de contribución"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.hr_contribution_register_action
@@ -512,7 +540,7 @@ msgstr "Subsidio de transporte"
 #. module: payroll
 #: model:hr.salary.rule,name:payroll.hr_salary_rule_ca_demo
 msgid "Conveyance Allowance For Marc Demo"
-msgstr ""
+msgstr "Subsidio de Transporte para Marc Demo"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contract_advantage_template__create_uid
@@ -591,10 +619,10 @@ msgid ""
 "mandatory anymore and thus the rules applied will be all the rules set on "
 "the structure of all contracts of the employee valid for the chosen period"
 msgstr ""
-"Define las reglas que serán aplicadas a esta nómina, de acuerdo con el "
-"contrato escogido. Si deja vacío el campo contrato, este campo no será "
-"obligatorio y por tanto se aplicarán las reglas válidas establecidas en "
-"todos los contratos de empleado para el periodo elegido."
+"Define las reglas que serán aplicadas a esta liquidación de sueldo, de "
+"acuerdo con el contrato escogido. Si deja vacío el campo contrato, este "
+"campo no será obligatorio y por tanto se aplicarán las reglas válidas "
+"establecidas en todos los contratos de empleado para el periodo elegido"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contribution_register__note
@@ -653,7 +681,7 @@ msgstr "Hecho"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Done Payslip Batches"
-msgstr "Procesamientos de nóminas realizados"
+msgstr "Procesamientos de Liquidaciones realizados"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
@@ -671,7 +699,7 @@ msgstr "Borrador"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Draft Payslip Batches"
-msgstr "Procesamientos de liquidaciones - borrador"
+msgstr "Procesamientos de Liquidaciones en borrador"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
@@ -701,7 +729,7 @@ msgstr "Función del empleado"
 #: model:ir.actions.act_window,name:payroll.hr_payslip_action
 #: model:ir.ui.menu,name:payroll.hr_payslip_menu
 msgid "Employee Payslips"
-msgstr "Nóminas del empleado"
+msgstr "Haberes del empleado"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_contract_advantage_template
@@ -726,13 +754,14 @@ msgstr "Empleados"
 #, python-format
 msgid "Error! You cannot create recursive hierarchy of Salary Rule Category."
 msgstr ""
-"Error! No puede crear una jerarquía recursiva de la Categoría Regla Salarial"
+"¡Error! No puede crear una jerarquía recursiva de la Categoría Regla "
+"Salarial."
 
 #. module: payroll
 #: code:addons/payroll/models/hr_salary_rule.py:0
 #, python-format
 msgid "Error! You cannot create recursive hierarchy of Salary Rules."
-msgstr "Error! No puede crear una jerarquía recursiva de Regla Salarial"
+msgstr "¡Error! No puede crear una jerarquía recursiva de Regla Salarial."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__register_id
@@ -753,25 +782,25 @@ msgstr "Importe fijo"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_follower_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_channel_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores (Canales)"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_partner_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__activity_type_icon
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Font awesome icon ej. fa-tasks"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__amount_percentage
@@ -799,7 +828,7 @@ msgstr "Generar"
 #: model:ir.actions.act_window,name:payroll.action_hr_payslip_by_employees
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
 msgid "Generate Payslips"
-msgstr "Generar nóminas"
+msgstr "Generar liquidación de sueldos"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payslip_employees
@@ -861,13 +890,13 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_exception_icon
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Ícono"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__activity_exception_icon
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Ícono para indicar actividad de excepción."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__message_needaction
@@ -875,7 +904,7 @@ msgstr ""
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_needaction
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__message_has_error
@@ -883,7 +912,7 @@ msgstr ""
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_has_error
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__credit_note
@@ -891,8 +920,8 @@ msgid ""
 "If its checked, indicates that all payslips generated from here are refund "
 "payslips."
 msgstr ""
-"Si está marcada, indica que todas las nóminas generadas desde aquí son "
-"nóminas reembolso."
+"Si está marcada, indica que todas las liquidaciones de sueldo generadas "
+"desde aquí son de reembolso."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__active
@@ -907,7 +936,9 @@ msgstr ""
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__credit_note
 msgid "Indicates this payslip has a refund of another"
-msgstr "Indica que esta nómina incluye una factura rectificativa de otra"
+msgstr ""
+"Indica que esta liquidación de sueldo incluye una factura rectificativa de "
+"otra"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
@@ -931,7 +962,7 @@ msgstr "Nota interna"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_is_follower
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es Seguidor"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_kanban
@@ -1044,12 +1075,12 @@ msgstr "¿Realizar orden de pago? "
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_main_attachment_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunto Principal"
 
 #. module: payroll
 #: model:ir.module.category,description:payroll.module_category_payroll
 msgid "Manage employee payroll"
-msgstr ""
+msgstr "Gestionar haberes del empleado"
 
 #. module: payroll
 #: model:res.groups,name:payroll.group_payroll_manager
@@ -1071,13 +1102,13 @@ msgstr "Bono de comida"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_has_error
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error en la entrega del mensaje"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__condition_range_min
@@ -1099,7 +1130,7 @@ msgstr "Mensual"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__my_activity_date_deadline
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Mi Fecha Límite de Actividad"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contract_advantage_template__name
@@ -1129,19 +1160,19 @@ msgstr "Salario Neto"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_date_deadline
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Siguiente Fecha Límite de Actividad"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_summary
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumen de la Siguiente Actividad"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_type_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Siguiente Tipo de Actividad"
 
 #. module: payroll
 #: code:addons/payroll/models/hr_payslip.py:0
@@ -1158,7 +1189,7 @@ msgstr "Notas"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_needaction_counter
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Acciones"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_worked_days__number_of_days
@@ -1174,25 +1205,25 @@ msgstr "Número de horas"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_has_error_counter
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__message_needaction_counter
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__message_has_error_counter
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de entrega"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__message_unread_counter
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de mensajes sin leer"
 
 #. module: payroll
 #: model:res.groups,name:payroll.group_payroll_user
@@ -1234,32 +1265,32 @@ msgstr "Liquidacion"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "PaySlip Batch"
-msgstr "Procesamiento de liquidaciones"
+msgstr "Procesamiento de liquidaciones de sueldo"
 
 #. module: payroll
 #: model:ir.actions.report,name:payroll.payslip_details_report
 msgid "PaySlip Details"
-msgstr "Detalles de la liquidacion"
+msgstr "Detalles de la liquidación de sueldo"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.action_payslip_lines_contribution_register
 msgid "PaySlip Lines"
-msgstr "Líneas de liquidacion"
+msgstr "Líneas de liquidación"
 
 #. module: payroll
 #: model:ir.actions.report,print_report_name:payroll.action_contribution_register
 msgid "PaySlip Lines By Contribution Register"
-msgstr ""
+msgstr "Registro de Líneas de Haberes por Aporte"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.report_contributionregister
 msgid "PaySlip Lines by Contribution Register"
-msgstr "Líneas de liquidacion por registro de contribución"
+msgstr "Líneas de Liquidación por registro de contribución"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.report_contributionregister
 msgid "PaySlip Name"
-msgstr "Nombre de la liquidacion"
+msgstr "Nombre de la Liquidación"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.open_payroll_modules
@@ -1267,12 +1298,12 @@ msgstr "Nombre de la liquidacion"
 #: model:ir.ui.menu,name:payroll.payroll_menu_root
 #: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
 msgid "Payroll"
-msgstr "Payroll"
+msgstr "Haberes"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_res_config_settings__module_payroll_account
 msgid "Payroll Accounting"
-msgstr "Contabilidad de Sueldos"
+msgstr "Contabilidad de Liquidación de Sueldos"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_report_payroll_report_contributionregister
@@ -1282,39 +1313,39 @@ msgstr "Reporte de Registros de Contribucion"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
 msgid "Payroll Entries"
-msgstr "Registros de la liquidacion"
+msgstr "Registros de la Liquidación de Sueldos"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payroll_structure_view_search
 msgid "Payroll Structures"
-msgstr "Estructuras de Sueldos"
+msgstr "Estructuras de Liquidación de Sueldos"
 
 #. module: payroll
 #: model:ir.actions.report,name:payroll.action_report_payslip
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
 msgid "Payslip"
-msgstr "Liquidacion"
+msgstr "Liquidación de Sueldo"
 
 #. module: payroll
 #: code:addons/payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Payslip 'Date From' must be earlier than 'Date To'."
 msgstr ""
-"La 'Fecha desde' debe ser anterior a la 'Fecha Hasta' en la liquidacion."
+"La 'Fecha Desde' debe ser anterior a la 'Fecha Hasta' en la liquidación."
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payslip_run
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__payslip_run_id
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Payslip Batches"
-msgstr "Procesamientos de liquidaciones"
+msgstr "Procesamientos de Liquidaciones"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.hr_payslip_line_action_computation_details
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__payslip_count
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
 msgid "Payslip Computation Details"
-msgstr "Detalles de cálculo de liquidacion"
+msgstr "Detalles de cálculo de liquidación"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_employee__payslip_count
@@ -1324,24 +1355,24 @@ msgstr "Recuento de Liquidaciones"
 #. module: payroll
 #: model:ir.model,name:payroll.model_report_payroll_report_payslipdetails
 msgid "Payslip Details Report"
-msgstr "Detalle de Liquidacion"
+msgstr "Detalle de Liquidación"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payslip_input
 msgid "Payslip Input"
-msgstr "Entrada de Liquidacion"
+msgstr "Entrada de Liquidación"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__input_line_ids
 msgid "Payslip Inputs"
-msgstr "Entradas de liquidacion"
+msgstr "Entradas de liquidación"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payslip_line
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
 msgid "Payslip Line"
-msgstr "Línea de liquidacion"
+msgstr "Línea de liquidación"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.hr_payslip_line_action
@@ -1360,18 +1391,18 @@ msgstr "Líneas de liquidaciones por registro de contribución"
 #. module: payroll
 #: model:ir.model,name:payroll.model_payslip_lines_contribution_register
 msgid "Payslip Lines by Contribution Registers"
-msgstr "Líneas de liquidaciones por registro de contribución"
+msgstr "Líneas de liquidaciones por registros de contribución"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__name
 msgid "Payslip Name"
-msgstr "Nombre de liquidacion"
+msgstr "Nombre de la Liquidación de Sueldo"
 
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payslip_worked_days
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__worked_days_line_ids
 msgid "Payslip Worked Days"
-msgstr "Días trabajados - liquidados"
+msgstr "Días Trabajados - Liquidados"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.hr_payslip_action_employee
@@ -1382,7 +1413,7 @@ msgstr "Días trabajados - liquidados"
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_tree
 msgid "Payslips"
-msgstr "Liquidaciones"
+msgstr "Liquidaciones de Sueldo"
 
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.hr_payslip_run_action
@@ -1390,12 +1421,12 @@ msgstr "Liquidaciones"
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_tree
 msgid "Payslips Batches"
-msgstr "Procesamientos de liquidaciones"
+msgstr "Procesamientos de Liquidaciones"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 msgid "Payslips by Employees"
-msgstr "Liquidaciones por empleados"
+msgstr "Liquidaciones de Sueldo por Empleados"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__amount_percentage
@@ -1511,7 +1542,7 @@ msgstr "Factura rectificativa"
 #: code:addons/payroll/models/hr_payslip.py:0
 #, python-format
 msgid "Refund Payslip"
-msgstr ""
+msgstr "Reembolso de Liquidación de Sueldo"
 
 #. module: payroll
 #: code:addons/payroll/models/hr_payslip.py:0
@@ -1533,7 +1564,7 @@ msgstr "Rechazada"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__activity_user_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario Responsable"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__salary_rule_id
@@ -1544,7 +1575,7 @@ msgstr "Regla"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_has_sms_error
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error de entrega de SMS"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_category_view_form
@@ -1623,17 +1654,17 @@ msgstr "Pago planificado"
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Search Payslip Batches"
-msgstr "Buscar procesamientos de liquidaciones"
+msgstr "Buscar procesamientos de Liquidaciones"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_search
 msgid "Search Payslip Lines"
-msgstr "Buscar líneas de liquidaciones"
+msgstr "Buscar líneas de Liquidaciones"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Search Payslips"
-msgstr "Buscar liquidaciones"
+msgstr "Buscar Liquidaciones"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_search
@@ -1685,6 +1716,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado basado en actividades\n"
+"Atrasado: la fecha de vencimiento ya pasó\n"
+"Hoy: la fecha de la actividad es hoy\n"
+"Planeado: Actividades futuras."
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__struct_id
@@ -1713,7 +1748,7 @@ msgstr "El código puede ser usado en las reglas salariales"
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__amount_select
 #: model:ir.model.fields,help:payroll.field_hr_salary_rule__amount_select
 msgid "The computation method for the rule amount."
-msgstr "El método de cálculo para el importe de la regla"
+msgstr "El método de cálculo para el importe de la regla."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_input__contract_id
@@ -1725,13 +1760,13 @@ msgstr "El contrato para el que aplica esta entrada"
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__condition_range_max
 #: model:ir.model.fields,help:payroll.field_hr_salary_rule__condition_range_max
 msgid "The maximum amount, applied for this rule."
-msgstr "El importe máximo aplicado a esta regla"
+msgstr "El importe máximo, aplicado a esta regla."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__condition_range_min
 #: model:ir.model.fields,help:payroll.field_hr_salary_rule__condition_range_min
 msgid "The minimum amount, applied for this rule."
-msgstr "El importe mínimo aplicado a esta regla"
+msgstr "El importe mínimo, aplicado a esta regla."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__condition_range
@@ -1762,19 +1797,19 @@ msgstr "Días de trabajo totales"
 #: model:ir.model.fields,help:payroll.field_hr_payslip__activity_exception_decoration
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de la excepción de actividad en el regtistro."
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_unread
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes Sin Leer"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__message_unread_counter
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de Mensajes sin Leer"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contract_advantage_template__upper_bound
@@ -1796,7 +1831,7 @@ msgstr "Se utiliza para organizar la secuencia de cálculo"
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__appears_on_payslip
 #: model:ir.model.fields,help:payroll.field_hr_salary_rule__appears_on_payslip
 msgid "Used to display the salary rule on payslip."
-msgstr "Se usa para mostrar la regla de salario en la nómina."
+msgstr "Se usa para mostrar la regla de salario en la liquidación de sueldo."
 
 #. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_payslip__state__verify
@@ -1807,13 +1842,13 @@ msgstr "En espera"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__website_message_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes del Sitio Web"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip__website_message_ids
 #: model:ir.model.fields,help:payroll.field_hr_payslip_run__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicación del sitio web"
 
 #. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_contract__schedule_pay__weekly
@@ -1869,20 +1904,21 @@ msgstr "No puedes crear estructuras recursivas."
 #, python-format
 msgid "You cannot delete a payslip which is not draft or cancelled"
 msgstr ""
-"No puedes eliminar una liquidacion que no este en estado 'borrador' o "
-"'cancelada'."
+"No puede eliminar una liquidación de sueldo que no este en estado 'borrador' "
+"o 'cancelada'"
 
 #. module: payroll
 #: code:addons/payroll/wizard/hr_payroll_payslips_by_employees.py:0
 #, python-format
 msgid "You must select employee(s) to generate payslip(s)."
-msgstr "Debe seleccionar un empleado(s) para crear la(s) nómina(s)."
+msgstr ""
+"Debe seleccionar un empleado(s) para crear la(s) liquidación(es) de sueldo."
 
 #. module: payroll
 #: code:addons/payroll/models/hr_payslip_line.py:0
 #, python-format
 msgid "You must set a contract to create a payslip line."
-msgstr "Debe crear un contrato para crear una línea de colilla de pago."
+msgstr "Debe crear un contrato para crear una línea de liquidación de sueldo."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_line__amount_percentage_base

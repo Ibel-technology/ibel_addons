@@ -8,7 +8,7 @@ class HelpdeskTicket(models.Model):
     _rec_name = "number"
     _order = "number desc"
     _mail_post_access = "read"
-    _inherit = ["mail.thread.cc", "mail.activity.mixin"]
+    _inherit = ["mail.thread.cc", "mail.activity.mixin", "portal.mixin"]
 
     def _get_default_stage_id(self):
         return self.env["helpdesk.ticket.stage"].search([], limit=1).id
@@ -96,6 +96,12 @@ class HelpdeskTicket(models.Model):
     )
     active = fields.Boolean(default=True)
 
+    def name_get(self):
+        res = []
+        for rec in self:
+            res.append((rec.id, rec.number + " - " + rec.name))
+        return res
+
     def assign_to_me(self):
         self.write({"user_id": self.env.user.id})
 
@@ -156,6 +162,11 @@ class HelpdeskTicket(models.Model):
             seq = seq.with_company(values["company_id"])
         return seq.next_by_code("helpdesk.ticket.sequence") or "/"
 
+    def _compute_access_url(self):
+        super()._compute_access_url()
+        for item in self:
+            item.access_url = "/my/ticket/%s" % (item.id)
+
     # ---------------------------------------------------
     # Mail gateway
     # ---------------------------------------------------
@@ -210,7 +221,7 @@ class HelpdeskTicket(models.Model):
         return ticket
 
     def message_update(self, msg, update_vals=None):
-        """ Override message_update to subscribe partners """
+        """Override message_update to subscribe partners"""
         email_list = tools.email_split(
             (msg.get("to") or "") + "," + (msg.get("cc") or "")
         )
