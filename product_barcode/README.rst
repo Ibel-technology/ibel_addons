@@ -20,8 +20,10 @@ Credits
 -------
 * Developer:	Sreejith P @ cybrosys, Contact: odoo@cybrosys.com
 		Niyas Raphy @cybrosys, Contact: odoo@cybrosys.com
-    		Version 13: Nimisha Murali@cybrosys,Contact: odoo@cybrosys.com
-    		Version 14: Naveen V @cybrosys, Contact: odoo@cybrosys.com
+        Version 13: Nimisha Murali@cybrosys,Contact: odoo@cybrosys.com
+        Version 14: Naveen V @cybrosys, Contact: odoo@cybrosys.com
+        Version 15: Noorjahan N A @cybrosys, Contact: odoo@cybrosys.com
+
 Contacts
 --------
 * Mail Contact : odoo@cybrosys.com

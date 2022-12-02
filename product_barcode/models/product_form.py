@@ -31,15 +31,7 @@ class ProductAutoBarcode(models.Model):
     @api.model
     def create(self, vals):
         res = super(ProductAutoBarcode, self).create(vals)
-        barcode_id = res.id
-        barcode_search = False
-        while not barcode_search:
-            ean = generate_ean(str(barcode_id))
-            if self.env['product.product'].search([('barcode', '=', ean)]):
-                barcode_search = False
-                barcode_id += 1
-            else:
-                barcode_search = True
+        ean = generate_ean(str(res.id))
         res.barcode = ean
         return res
 
@@ -88,7 +80,6 @@ def generate_ean(ean):
     ean = ean[:13]
     if len(ean) < 13:
         ean = ean + '0' * (13 - len(ean))
-    print("barcode : ", ean[:-1] + str(ean_checksum(ean)))
     return ean[:-1] + str(ean_checksum(ean))
 
 
@@ -98,15 +89,7 @@ class ProductTemplateAutoBarcode(models.Model):
     @api.model
     def create(self, vals_list):
         templates = super(ProductTemplateAutoBarcode, self).create(vals_list)
-        barcode_id = templates.id
-        barcode_search = False
-        while not barcode_search:
-            ean = generate_ean(str(barcode_id))
-            if self.env['product.product'].search([('barcode', '=', ean)]):
-                barcode_search = False
-                barcode_id += 1
-            else:
-                barcode_search = True
+        ean = generate_ean(str(templates.id))
         templates.barcode = ean
         return templates
 

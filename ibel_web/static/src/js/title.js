@@ -1,11 +1,12 @@
-odoo.define('web_window_title', function (require) {
-"use strict";
+/** @odoo-module **/
 
-var WebClient = require('web.WebClient');
-WebClient.include({
-    init: function() {
+import { WebClient } from "@web/webclient/webclient";
+import { patch } from "@web/core/utils/patch";
+import { session } from "@web/session";
+
+patch(WebClient.prototype, "ibel_web.WebClient", {
+    setup() {
         this._super.apply(this, arguments);
-        this.set('title_part', {"zopenerp": 'Ibel'});
+        this.title.setParts({ zopenerp: 'Ibel' }); // zopenerp is easy to grep
     }
-});
 });

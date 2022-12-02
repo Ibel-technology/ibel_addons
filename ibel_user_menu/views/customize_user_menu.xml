@@ -1,8 +1,0 @@
-<odoo>
-        <template id="assets_backend" name="ibel_user_menu assets" inherit_id="web.assets_backend">
-            <xpath expr="script[last()]" position="after">
-                <script type="text/javascript" src="/ibel_user_menu/static/src/js/customize_user_menu.js"></script>
-            </xpath>
-        </template>
-
-</odoo>
