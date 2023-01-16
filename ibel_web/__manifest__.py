@@ -10,12 +10,12 @@
     """,
 
     'author': "Ibel technology",
-    'website': "https://ibeltechnology.sn",
+    'website': "https://ibeltechnology.com.com",
     'license': 'LGPL-3',
 
     'category': 'Uncategorized',
     'version': '16.0',
-    'depends': ['base','web'],
+    'depends': ['base','web',],
 
  
     "assets": {
@@ -31,7 +31,7 @@
     },
    'data': [
         'views/views.xml',
-        'views/templates.xml',
+        'views/webclient_templates.xml',
     ],
     "auto_install": True,
 }
