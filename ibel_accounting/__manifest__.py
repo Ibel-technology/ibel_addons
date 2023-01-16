@@ -10,10 +10,11 @@
     'depends': [
         'account',
         'account_usability',
+        'account_financial_report',
         'account_due_list',
         'account_fiscal_year',
         'account_tax_balance',
-
+        'account_asset_management'
     ],
     'data': [
     ],
