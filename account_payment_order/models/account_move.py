@@ -53,7 +53,7 @@ class AccountMove(models.Model):
 
     def create_account_payment_line(self):
         apoo = self.env["account.payment.order"]
-        result_payorder_ids = []
+        result_payorder_ids = set()
         action_payment_type = "debit"
         for move in self:
             if move.state != "posted":
@@ -91,7 +91,7 @@ class AccountMove(models.Model):
                         move._prepare_new_payment_order(payment_mode)
                     )
                     new_payorder = True
-                result_payorder_ids.append(payorder.id)
+                result_payorder_ids.add(payorder.id)
                 action_payment_type = payorder.payment_type
                 count = 0
                 for line in applicable_lines.filtered(
@@ -103,17 +103,20 @@ class AccountMove(models.Model):
                     move.message_post(
                         body=_(
                             "%d payment lines added to the new draft payment "
-                            "order %s which has been automatically created."
+                            "order <a href=# data-oe-model=account.payment.order "
+                            "data-oe-id=%d>%s</a> which has been automatically created."
                         )
-                        % (count, payorder.name)
+                        % (count, payorder.id, payorder.display_name)
                     )
                 else:
                     move.message_post(
                         body=_(
                             "%d payment lines added to the existing draft "
-                            "payment order %s."
+                            "payment order "
+                            "<a href=# data-oe-model=account.payment.order "
+                            "data-oe-id=%d>%s</a>."
                         )
-                        % (count, payorder.name)
+                        % (count, payorder.id, payorder.display_name)
                     )
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "account_payment_order.account_payment_order_%s_action"

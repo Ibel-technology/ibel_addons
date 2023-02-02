@@ -7,9 +7,17 @@ class HelpdeskTeam(models.Model):
     _name = "helpdesk.ticket.team"
     _description = "Helpdesk Ticket Team"
     _inherit = ["mail.thread", "mail.alias.mixin"]
+    _order = "sequence, id"
 
+    sequence = fields.Integer(default=10)
     name = fields.Char(string="Name", required=True)
-    user_ids = fields.Many2many(comodel_name="res.users", string="Members")
+    user_ids = fields.Many2many(
+        comodel_name="res.users",
+        string="Members",
+        relation="helpdesk_ticket_team_res_users_rel",
+        column1="helpdesk_ticket_team_id",
+        column2="res_users_id",
+    )
     active = fields.Boolean(default=True)
     category_ids = fields.Many2many(
         comodel_name="helpdesk.ticket.category", string="Category"
@@ -52,6 +60,11 @@ class HelpdeskTeam(models.Model):
     )
     todo_ticket_count_high_priority = fields.Integer(
         string="Number of tickets in high priority", compute="_compute_todo_tickets"
+    )
+    show_in_portal = fields.Boolean(
+        string="Show in portal form",
+        default=True,
+        help="Allow to select this team when creating a new ticket in the portal.",
     )
 
     @api.depends("ticket_ids", "ticket_ids.stage_id")

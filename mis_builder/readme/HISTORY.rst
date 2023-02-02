@@ -1,3 +1,27 @@
+14.0.4.1.2 (2023-01-27)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Bugfixes**
+
+- Fix display of analytic tags in PDF and Excel reports. (`#353 <https://github.com/OCA/mis-builder/issues/353>`_)
+
+
+14.0.4.0.6 (2022-07-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Bugfixes**
+
+- Support users without timezone. (`#388 <https://github.com/OCA/mis-builder/issues/388>`_)
+
+
+14.0.4.0.5 (2022-07-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Bugfixes**
+
+- Allow deleting a report that has subreports. (`#431 <https://github.com/OCA/mis-builder/issues/431>`_)
+
+
 14.0.4.0.2 (2022-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

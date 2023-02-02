@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form, common
+from odoo.tests import Form, common, tagged
 
 
 def to_date(date):
@@ -191,6 +191,7 @@ class TestContractBase(common.SavepointCase):
         return cls.uom_obj.create(vals)
 
 
+@tagged("post_install", "-at_install")
 class TestContract(TestContractBase):
     def _add_template_line(self, overrides=None):
         if overrides is None:
@@ -330,7 +331,8 @@ class TestContract(TestContractBase):
         self.contract._recurring_create_invoice()
         invoice_daily = self.contract._get_related_invoices()
         self.assertTrue(invoice_daily)
-        self.assertEquals(self.contract.user_id, invoice_daily.user_id)
+        self.assertEqual(self.contract.user_id, invoice_daily.user_id)
+        self.assertEqual(self.contract.user_id, invoice_daily.invoice_user_id)
 
     def test_contract_weekly_post_paid(self):
         recurring_next_date = to_date("2018-03-01")
@@ -1721,7 +1723,7 @@ class TestContract(TestContractBase):
         self.assertFalse(line_4.successor_contract_line_id)
 
     def test_renew_create_new_line(self):
-        date_start = self.today - relativedelta(months=9)
+        date_start = fields.Date.from_string("2022-01-01")
         date_end = date_start + relativedelta(months=12) - relativedelta(days=1)
         self.acct_line.write(
             {
@@ -1741,7 +1743,7 @@ class TestContract(TestContractBase):
 
     def test_renew_extend_original_line(self):
         self.contract.company_id.create_new_line_at_contract_line_renew = False
-        date_start = self.today - relativedelta(months=9)
+        date_start = fields.Date.from_string("2022-01-01")
         date_end = date_start + relativedelta(months=12) - relativedelta(days=1)
         self.acct_line.write(
             {
@@ -2322,6 +2324,40 @@ class TestContract(TestContractBase):
         self.assertFalse(self.contract.terminate_reason_id)
         self.assertFalse(self.contract.terminate_comment)
 
+    def test_action_terminate_contract_check_recurring_dates(self):
+        """
+        The use case here is to use a contract with recurrence on its level.
+
+        Create a first invoice
+        Then, terminate it => Lines should have a end_date
+        Then, create a new invoice (the last one).
+        The recurring next date should be False.
+        """
+        group_can_terminate_contract = self.env.ref("contract.can_terminate_contract")
+        group_can_terminate_contract.users |= self.env.user
+        self.contract3.contract_line_ids.write({"date_start": "2018-03-01"})
+        self.contract3.recurring_create_invoice()
+        self.assertEqual(to_date("2018-04-01"), self.contract3.recurring_next_date)
+
+        action = self.contract3.action_terminate_contract()
+        wizard = (
+            self.env[action["res_model"]]
+            .with_context(action["context"])
+            .create(
+                {
+                    "terminate_date": "2018-04-02",
+                    "terminate_reason_id": self.terminate_reason.id,
+                    "terminate_comment": "terminate_comment",
+                }
+            )
+        )
+        wizard.terminate_contract()
+        # This is the last invoice
+        self.contract3.recurring_create_invoice()
+
+        # Recurring next date should be False
+        self.assertFalse(self.contract3.recurring_next_date)
+
     def test_terminate_date_before_last_date_invoiced(self):
         self.contract.recurring_create_invoice()
         self.assertEqual(self.acct_line.last_date_invoiced, to_date("2018-02-14"))
@@ -2401,3 +2437,17 @@ class TestContract(TestContractBase):
         action = self.contract.action_preview()
         self.assertIn("/my/contracts/", action["url"])
         self.assertIn("access_token=", action["url"])
+
+    def test_automatic_price_with_specific_uom(self):
+        uom_hour = self.env.ref("uom.product_uom_hour")
+        uom_day = self.env.ref("uom.product_uom_day")
+        # Set automatic price on contract line
+        self.acct_line.automatic_price = True
+        # Check UOM from contract line and product and product price to be the same
+        self.assertEqual(self.product_1.uom_id, uom_hour)
+        self.assertEqual(self.acct_line.uom_id, uom_hour)
+        self.assertEqual(self.acct_line.price_unit, 30.75)
+        # Check UOM update and price in contract line
+        self.acct_line.uom_id = uom_day.id
+        self.acct_line.refresh()
+        self.assertEqual(self.acct_line.price_unit, 30.75 * 8)

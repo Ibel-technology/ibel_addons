@@ -1,7 +1,11 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+logger = logging.getLogger(__name__)
 
 
 class HrPayslipLine(models.Model):
@@ -72,9 +76,13 @@ class HrPayslip(models.Model):
         )
 
     def action_payslip_cancel(self):
-        moves = self.mapped("move_id")
-        moves.filtered(lambda x: x.state == "posted").button_cancel()
-        moves.unlink()
+        for payslip in self:
+            if not payslip.move_id.journal_id.restrict_mode_hash_table:
+                payslip.move_id.with_context(force_delete=True).button_cancel()
+                payslip.move_id.with_context(force_delete=True).unlink()
+            else:
+                payslip.move_id._reverse_moves()
+                payslip.move_id = False
         return super(HrPayslip, self).action_payslip_cancel()
 
     def action_payslip_done(self):
@@ -96,7 +104,7 @@ class HrPayslip(models.Model):
                 "journal_id": slip.journal_id.id,
                 "date": date,
             }
-            for line in slip.details_by_salary_rule_category:
+            for line in slip.line_ids:
                 amount = currency.round(slip.credit_note and -line.total or line.total)
                 if currency.is_zero(amount):
                     continue
@@ -255,10 +263,15 @@ class HrPayslip(models.Model):
                     },
                 )
                 line_ids.append(adjust_debit)
-            move_dict["line_ids"] = line_ids
-            move = self.env["account.move"].create(move_dict)
-            slip.write({"move_id": move.id, "date": date})
-            move.post()
+            if len(line_ids) > 0:
+                move_dict["line_ids"] = line_ids
+                move = self.env["account.move"].create(move_dict)
+                slip.write({"move_id": move.id, "date": date})
+                move.action_post()
+            else:
+                logger.warning(
+                    f"Payslip {slip.number} did not generate any account move lines"
+                )
         return res
 
 

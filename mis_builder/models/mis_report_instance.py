@@ -365,6 +365,9 @@ class MisReportInstancePeriod(models.Model):
     def _onchange_source(self):
         if self.source in (SRC_SUMCOL, SRC_CMPCOL):
             self.mode = MODE_NONE
+        # Dirty hack to solve bug https://github.com/OCA/mis-builder/issues/393
+        if self.source and not self.report_instance_id.id:
+            self.report_instance_id = self.report_instance_id._origin.id
 
     def _get_aml_model_name(self):
         self.ensure_one()
@@ -587,7 +590,7 @@ class MisReportInstance(models.Model):
         else:
             prev = self.company_ids.ids
             company = False
-            if self.env.company.id in prev:
+            if self.env.company.id in prev or not prev:
                 company = self.env.company
             else:
                 for c_id in prev:
@@ -630,15 +633,11 @@ class MisReportInstance(models.Model):
             filter_descriptions.append(
                 _("Analytic Account Group: %s") % analytic_group.display_name
             )
-        analytic_tag_value = filters.get("analytic_tag_ids", {}).get("value")
-        if analytic_tag_value:
-            # TODO 14 we need a test to cover this
-            analytic_tag_names = self.resolve_2many_commands(
-                "analytic_tag_ids", analytic_tag_value, ["name"]
-            )
+        analytic_tag_ids = filters.get("analytic_tag_ids", {}).get("value")
+        if analytic_tag_ids:
+            analytic_tags = self.env["account.analytic.tag"].browse(analytic_tag_ids)
             filter_descriptions.append(
-                _("Analytic Tags: %s")
-                % ", ".join([rec["name"] for rec in analytic_tag_names])
+                _("Analytic Tags: %s") % ", ".join(analytic_tags.mapped("name"))
             )
         return filter_descriptions
 

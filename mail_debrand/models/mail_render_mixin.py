@@ -22,41 +22,49 @@ class MailRenderMixin(models.AbstractModel):
         if type(value) is bytes:
             value = value.decode()
         has_odoo_link = re.search(r"<a\s(.*)odoo\.com", value, flags=re.IGNORECASE)
+        extra_regex_to_skip = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("mail_debrand.extra_regex_to_skip", "False")
+        )
+        # value is required field on ir config_parameter, so we have added
+        # safety check for "False"
+        if (
+            has_odoo_link
+            and extra_regex_to_skip
+            and extra_regex_to_skip.strip().lower() != "false"
+        ):
+            # check each regex to be skipped
+            for regex in extra_regex_to_skip.split(","):
+                if re.search(r"{}".format(regex), value, flags=re.IGNORECASE):
+                    has_odoo_link = False
+                    break
         if has_odoo_link:
             # We don't want to change what was explicitly added in the message body,
             # so we will only change what is before and after it.
             if to_keep:
-                to_change = value.split(to_keep)
-            else:
-                to_change = [value]
-                to_keep = ""
-            new_parts = []
-            for part in to_change:
-                tree = html.fromstring(part)
-                if tree is None:
-                    new_parts.append(part)
-                    continue
-                odoo_anchors = tree.xpath('//a[contains(@href,"odoo.com")]')
-                for elem in odoo_anchors:
-                    parent = elem.getparent()
-                    previous = elem.getprevious()
-
-                    if remove_before and not remove_parent and previous is not None:
-                        # remove 'using' that is before <a and after </span>
-                        previous.tail = ""
-                    if remove_parent and len(parent.getparent()):
-                        # anchor <a href odoo has a parent powered by that must be removed
+                value = value.replace(to_keep, "<body_msg></body_msg>")
+            tree = html.fromstring(value)
+            odoo_anchors = tree.xpath('//a[contains(@href,"odoo.com")]')
+            for elem in odoo_anchors:
+                parent = elem.getparent()
+                previous = elem.getprevious()
+                if remove_before and not remove_parent and previous is not None:
+                    # remove 'using' that is before <a and after </span>
+                    previous.tail = ""
+                if remove_parent and len(parent.getparent()):
+                    # anchor <a href odoo has a parent powered by that must be removed
+                    parent.getparent().remove(parent)
+                else:
+                    if parent.tag == "td":  # also here can be powered by
                         parent.getparent().remove(parent)
                     else:
-                        if parent.tag == "td":  # also here can be powered by
-                            parent.getparent().remove(parent)
-                        else:
-                            parent.remove(elem)
-                part = etree.tostring(
-                    tree, pretty_print=True, method="html", encoding="unicode"
-                )
-                new_parts.append(part)
-            value = to_keep.join(new_parts)
+                        parent.remove(elem)
+            value = etree.tostring(
+                tree, pretty_print=True, method="html", encoding="unicode"
+            )
+            if to_keep:
+                value = value.replace("<body_msg></body_msg>", to_keep)
         return value
 
     @api.model

@@ -33,7 +33,7 @@
                           <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
                             <tr>
                               <td valign="middle" align="right">
-                                <img src="/logo.png?company=${object.company_id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}">
+                                <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}">
                               </td>
                             </tr>
                           </table>
@@ -100,7 +100,7 @@
                           <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
                             <tr>
                               <td valign="middle" align="right">
-                                <img src="/logo.png?company=${object.company_id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;">
+                                <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;">
                               </td>
                             </tr>
                           </table>
@@ -211,6 +211,22 @@
             <field name="alias_model_id" ref="model_helpdesk_ticket" />
             <field name="alias_user_id" ref="base.user_admin" />
             <field name="alias_parent_model_id" ref="model_helpdesk_ticket_team" />
+        </record>
+        <!-- Helpdesk Ticket-related subtypes for messaging / Chatter -->
+        <record id="hlp_tck_created" model="mail.message.subtype">
+            <field name="name">Ticket Created</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="default" eval="False" />
+            <field name="hidden" eval="False" />
+            <field name="description">Ticket created</field>
+        </record>
+        <!-- Helpdesk Ticket-related subtypes for messaging / Chatter -->
+        <record id="hlp_tck_team_created" model="mail.message.subtype">
+            <field name="name">Helpdesk Ticket Created</field>
+            <field name="res_model">helpdesk.ticket.team</field>
+            <field name="default" eval="True" />
+            <field name="parent_id" ref="hlp_tck_created" />
+            <field name="relation_field">team_id</field>
         </record>
     </data>
 </odoo>

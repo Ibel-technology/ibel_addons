@@ -6,7 +6,7 @@ class HelpdeskTicket(models.Model):
     _name = "helpdesk.ticket"
     _description = "Helpdesk Ticket"
     _rec_name = "number"
-    _order = "number desc"
+    _order = "priority desc, number desc, id desc"
     _mail_post_access = "read"
     _inherit = ["mail.thread.cc", "mail.activity.mixin", "portal.mixin"]
 
@@ -22,7 +22,11 @@ class HelpdeskTicket(models.Model):
     name = fields.Char(string="Title", required=True)
     description = fields.Html(required=True, sanitize_style=True)
     user_id = fields.Many2one(
-        comodel_name="res.users", string="Assigned user", tracking=True, index=True
+        comodel_name="res.users",
+        string="Assigned user",
+        tracking=True,
+        index=True,
+        domain="team_id and [('share', '=', False),('id', 'in', user_ids)] or [('share', '=', False)]",  # noqa: B950
     )
     user_ids = fields.Many2many(
         comodel_name="res.users", related="team_id.user_ids", string="Users"
@@ -111,25 +115,23 @@ class HelpdeskTicket(models.Model):
             self.partner_name = self.partner_id.name
             self.partner_email = self.partner_id.email
 
-    @api.onchange("team_id", "user_id")
-    def _onchange_dominion_user_id(self):
-        if self.user_id and self.user_ids and self.user_id not in self.team_id.user_ids:
-            self.update({"user_id": False})
-            return {"domain": {"user_id": []}}
-        if self.team_id:
-            return {"domain": {"user_id": [("id", "in", self.user_ids.ids)]}}
-        else:
-            return {"domain": {"user_id": []}}
-
     # ---------------------------------------------------
     # CRUD
     # ---------------------------------------------------
 
-    @api.model
-    def create(self, vals):
-        if vals.get("number", "/") == "/":
-            vals["number"] = self._prepare_ticket_number(vals)
-        return super().create(vals)
+    def _creation_subtype(self):
+        return self.env.ref("helpdesk_mgmt.hlp_tck_created")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("number", "/") == "/":
+                vals["number"] = self._prepare_ticket_number(vals)
+            if not vals.get("team_id") and vals.get("category_id"):
+                vals["team_id"] = self._prepare_team_id(vals)
+            if vals.get("user_id") and not vals.get("assigned_date"):
+                vals["assigned_date"] = fields.Datetime.now()
+        return super().create(vals_list)
 
     def copy(self, default=None):
         self.ensure_one()
@@ -166,6 +168,11 @@ class HelpdeskTicket(models.Model):
         super()._compute_access_url()
         for item in self:
             item.access_url = "/my/ticket/%s" % (item.id)
+
+    def _prepare_team_id(self, values):
+        category = self.env["helpdesk.ticket.category"].browse(values["category_id"])
+        if category.default_team_id:
+            return category.default_team_id.id
 
     # ---------------------------------------------------
     # Mail gateway
@@ -254,3 +261,24 @@ class HelpdeskTicket(models.Model):
             # imply modifying followers
             pass
         return recipients
+
+    def _notify_get_reply_to(
+        self, default=None, records=None, company=None, doc_names=None
+    ):
+        """Override to set alias of tasks to their team if any."""
+        aliases = (
+            self.sudo()
+            .mapped("team_id")
+            ._notify_get_reply_to(
+                default=default, records=None, company=company, doc_names=None
+            )
+        )
+        res = {ticket.id: aliases.get(ticket.team_id.id) for ticket in self}
+        leftover = self.filtered(lambda rec: not rec.team_id)
+        if leftover:
+            res.update(
+                super(HelpdeskTicket, leftover)._notify_get_reply_to(
+                    default=default, records=None, company=company, doc_names=doc_names
+                )
+            )
+        return res
