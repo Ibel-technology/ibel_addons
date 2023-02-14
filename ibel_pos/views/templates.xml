@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <template id="pos_title_debrand" inherit_id="point_of_sale.index">
+        <xpath expr="//title" position="replace">
+            <title>Ibel POS</title>
+        </xpath>
+        <xpath expr="//link" position="replace">
+            <link type="image/x-icon" rel="shortcut icon" t-att-href="x_icon or '/ibel_pos/static/src/img/favicon.ico'"/>
+        </xpath>
+    </template>
+    
+    <template id="debranding_title_pos" name="Debranding title pos JS" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/ibel_pos/static/src/js/abstract_web_client.js"/>
+        </xpath>
+    </template>
+</odoo>
